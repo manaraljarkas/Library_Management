@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.librarymanagement.library_management.model.Book;
 import com.librarymanagement.library_management.model.BorrowingRecord;
 import com.librarymanagement.library_management.model.Patron;
@@ -20,7 +19,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
