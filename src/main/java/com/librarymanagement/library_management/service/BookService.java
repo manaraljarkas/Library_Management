@@ -1,14 +1,15 @@
 package com.librarymanagement.library_management.service;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
 import com.librarymanagement.library_management.exception.DuplicateResourceException;
 import com.librarymanagement.library_management.exception.InvalidDataException;
 import com.librarymanagement.library_management.exception.ResourceNotFoundException;
 import com.librarymanagement.library_management.model.Book;
 import com.librarymanagement.library_management.repository.BookRepo;
-
 import jakarta.transaction.Transactional;
 
 @Service
@@ -17,6 +18,7 @@ public class BookService {
     @Autowired
     private BookRepo repo;
 
+    @Cacheable("books")
     public List<Book> getAllBooks() {
         List<Book> books = repo.findByIsDeletedFalse();
         if (books.isEmpty()) {
@@ -25,11 +27,13 @@ public class BookService {
         return books;
     }
 
+    @Cacheable(value = "book", key = "#id")
     public Book getBookById(int id) {
         return repo.findByIdAndIsDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Book with ID " + id + " not found or deleted."));
     }
 
+    @CacheEvict(value = {"books", "book"}, allEntries = true)
     public Book addBook(Book book) {
         if (book == null || book.getTitle() == null || book.getTitle().trim().isEmpty()) {
             throw new InvalidDataException("Book title is required.");
@@ -38,13 +42,14 @@ public class BookService {
             throw new InvalidDataException("Book author is required.");
         }
         if (repo.existsByIsbnAndIsDeletedFalse(book.getIsbn())) {
-        throw new DuplicateResourceException("A book with ISBN " + book.getIsbn() + " already exists.");
-    }
+            throw new DuplicateResourceException("A book with ISBN " + book.getIsbn() + " already exists.");
+        }
         book.setIsDeleted(false);
         return repo.save(book);
     }
 
     @Transactional
+    @CacheEvict(value = {"books", "book"}, allEntries = true)
     public Book updateBook(int id, Book updatedBook) {
         Book existingBook = repo.findByIdAndIsDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Book with ID " + id + " not found or deleted."));
@@ -66,13 +71,11 @@ public class BookService {
     }
 
     @Transactional
+    @CacheEvict(value = {"books", "book"}, allEntries = true)
     public void deleteBook(int id) {
         Book book = repo.findByIdAndIsDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Book with ID " + id + " not found or already deleted."));
         book.setIsDeleted(true);
         repo.save(book);
     }
-
-    
-
 }
