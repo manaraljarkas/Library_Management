@@ -1,7 +1,6 @@
 package com.librarymanagement.library_management.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.librarymanagement.library_management.model.Patron;
 import com.librarymanagement.library_management.repository.PatronRepo;
@@ -14,9 +13,6 @@ public class PatronService {
     @Autowired
     private PatronRepo repo;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
     public List<Patron> getAllPatrons() {
         return repo.findByIsDeletedFalse();
     }
@@ -27,7 +23,6 @@ public class PatronService {
     }
 
     public Patron addPatron(Patron patron) {
-        patron.setPassword(passwordEncoder.encode(patron.getPassword()));
         patron.setIsDeleted(false);
         return repo.save(patron);
     }
@@ -43,9 +38,6 @@ public class PatronService {
         }
         if (updatedPatron.getEmail() != null) {
             existingPatron.setEmail(updatedPatron.getEmail());
-        }
-        if (updatedPatron.getPassword() != null) {
-            existingPatron.setPassword(passwordEncoder.encode(updatedPatron.getPassword()));
         }
         return repo.save(existingPatron);
     }

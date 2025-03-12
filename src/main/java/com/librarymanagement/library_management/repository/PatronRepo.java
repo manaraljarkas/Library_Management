@@ -10,5 +10,4 @@ import com.librarymanagement.library_management.model.Patron;
 public interface PatronRepo extends JpaRepository<Patron, Integer> {
     List<Patron> findByIsDeletedFalse();
     Optional<Patron> findByIdAndIsDeletedFalse(int id);
-    Optional<Patron> findByEmail(String email);
 }
