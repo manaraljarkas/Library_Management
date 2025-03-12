@@ -55,6 +55,38 @@ PUT	/api/return/{bookId}/patron/{patronId}	Record the return of a borrowed book\
 \
 📖 For full API documentation, see [API_DOCUMENTATION.md](https://github.com/manaraljarkas/Library_Management/blob/main/API_DOCUMENTATION.md).\
 \
+
+🧪 Running Tests\
+📌 Testing Frameworks Used\
+    JUnit 5 – Unit testing framework\
+    Mockito – Mocking dependencies for isolated tests\
+    SpringBootTest – Integration testing\
+\
+🚀 How to Run Tests\
+
+Run the following command to execute all tests:\
+
+```bash
+mvn test
+```
+
+or if using Gradle:\
+```bash
+./gradlew test
+```
+📂 Test Locations\
+    Controller Tests: src/test/java/com/librarymanagement/library_management/controller/\
+    Service Tests: src/test/java/com/librarymanagement/library_management/service/\
+\
+✅ Expected Output\
+\
+If all tests pass, you'll see:\
+```bash
+[INFO] Tests run: X, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```
+If a test fails, check the error details for debugging.\
+\
 🔗 Technologies Used:\
     Spring Boot - Backend framework\
     JPA (Hibernate) - Database management\
