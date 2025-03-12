@@ -34,33 +34,33 @@ The application should now be running at http://localhost:8080.
 📌 API Endpoints\
 📖 Book Management Endpoints\
 Method	Endpoint	Description\
-GET	/api/books	Retrieve all books\
-GET	/api/books/{id}	Get book details by ID\
-POST	/api/books	Add a new book\
-PUT	/api/books/{id}	Update book information\
-DELETE	/api/books/{id}	Remove a book from the library\
+- GET	/api/books	Retrieve all books\
+- GET	/api/books/{id}	Get book details by ID\
+- POST	/api/books	Add a new book\
+- PUT	/api/books/{id}	Update book information\
+- DELETE	/api/books/{id}	Remove a book from the library\
 \
 👥 Patron Management Endpoints\
 Method	Endpoint	Description\
-GET	/api/patrons	Retrieve all patrons\
-GET	/api/patrons/{id}	Get patron details by ID\
-POST	/api/patrons	Register a new patron\
-PUT	/api/patrons/{id}	Update patron information\
-DELETE	/api/patrons/{id}	Remove a patron from the system\
+- GET	/api/patrons	Retrieve all patrons\
+- GET	/api/patrons/{id}	Get patron details by ID\
+- POST	/api/patrons	Register a new patron\
+- PUT	/api/patrons/{id}	Update patron information\
+- DELETE	/api/patrons/{id}	Remove a patron from the system\
 \
 🔄 Borrowing & Returning Books\
-Method	Endpoint	Description\
-POST	/api/borrow/{bookId}/patron/{patronId}	Record a book borrowing\
-PUT	/api/return/{bookId}/patron/{patronId}	Record the return of a borrowed book\
+      Method	Endpoint	Description\
+- POST	/api/borrow/{bookId}/patron/{patronId}	Record a book borrowing\
+- PUT	/api/return/{bookId}/patron/{patronId}	Record the return of a borrowed book\
 \
 📖 For full API documentation, see [API_DOCUMENTATION.md](https://github.com/manaraljarkas/Library_Management/blob/main/API_DOCUMENTATION.md).\
 \
 
 🧪 Running Tests\
 📌 Testing Frameworks Used\
-    JUnit 5 – Unit testing framework\
-    Mockito – Mocking dependencies for isolated tests\
-    SpringBootTest – Integration testing\
+- JUnit 5 – Unit testing framework\
+- Mockito – Mocking dependencies for isolated tests\
+- SpringBootTest – Integration testing\
 \
 🚀 How to Run Tests\
 
@@ -87,11 +87,19 @@ If all tests pass, you'll see:\
 ```
 If a test fails, check the error details for debugging.\
 \
+🔍 Logging & Monitoring\
+    ✅ Implemented logging using Aspect-Oriented Programming (AOP) to track method calls, exceptions, and execution time.\
+    📜 Logs important events, such as:\
+- Book additions & updates 📖\
+- Patron registrations 👥\
+- Borrowing & returning books 🔄\
+    📂 Logs are stored in the application logs for debugging and monitoring.\
+\
 🔗 Technologies Used:\
-    Spring Boot - Backend framework\
-    JPA (Hibernate) - Database management\
-    MySQL - Database\
-    Lombok - Reduces boilerplate code\
+- Spring Boot - Backend framework\
+- JPA (Hibernate) - Database management\
+- MySQL - Database\
+- Lombok - Reduces boilerplate code\
 \
 📜 License\
 \
