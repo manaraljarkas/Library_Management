@@ -34,7 +34,6 @@ class BorrowingRecordControllerTest {
     private BorrowingRecordController borrowingRecordController;
 
     private MockMvc mockMvc;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     private Book book;
     private Patron patron;
