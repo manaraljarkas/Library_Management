@@ -31,76 +31,85 @@ mvn spring-boot:run
 The application should now be running at http://localhost:8080.
 
 
-📌 API Endpoints\
-📖 Book Management Endpoints\
-Method	Endpoint	Description\
-- GET	/api/books	Retrieve all books\
-- GET	/api/books/{id}	Get book details by ID\
-- POST	/api/books	Add a new book\
-- PUT	/api/books/{id}	Update book information\
-- DELETE	/api/books/{id}	Remove a book from the library\
+## 📌 API Endpoints
+📖 Book Management Endpoints
+Method	Endpoint	Description
+- GET	/api/books	Retrieve all books
+- GET	/api/books/{id}	Get book details by ID
+- POST	/api/books	Add a new book
+- PUT	/api/books/{id}	Update book information
+- DELETE	/api/books/{id}	Remove a book from the library
 \
-👥 Patron Management Endpoints\
-Method	Endpoint	Description\
-- GET	/api/patrons	Retrieve all patrons\
-- GET	/api/patrons/{id}	Get patron details by ID\
-- POST	/api/patrons	Register a new patron\
-- PUT	/api/patrons/{id}	Update patron information\
-- DELETE	/api/patrons/{id}	Remove a patron from the system\
+👥 Patron Management Endpoints
+Method	Endpoint	Description
+- GET	/api/patrons	Retrieve all patrons
+- GET	/api/patrons/{id}	Get patron details by ID
+- POST	/api/patrons	Register a new patron
+- PUT	/api/patrons/{id}	Update patron information
+- DELETE	/api/patrons/{id}	Remove a patron from the system
 \
-🔄 Borrowing & Returning Books\
-      Method	Endpoint	Description\
-- POST	/api/borrow/{bookId}/patron/{patronId}	Record a book borrowing\
-- PUT	/api/return/{bookId}/patron/{patronId}	Record the return of a borrowed book\
+🔄 Borrowing & Returning Books
+      Method Endpoint Description:
+- POST	/api/borrow/{bookId}/patron/{patronId}	Record a book borrowing
+- PUT	/api/return/{bookId}/patron/{patronId}	Record the return of a borrowed book
 \
-📖 For full API documentation, see [API_DOCUMENTATION.md](https://github.com/manaraljarkas/Library_Management/blob/main/API_DOCUMENTATION.md).\
-\
+📖 For full API documentation, see [API_DOCUMENTATION.md](https://github.com/manaraljarkas/Library_Management/blob/main/API_DOCUMENTATION.md).
 
-🧪 Running Tests\
-📌 Testing Frameworks Used\
-- JUnit 5 – Unit testing framework\
-- Mockito – Mocking dependencies for isolated tests\
-- SpringBootTest – Integration testing\
-\
-🚀 How to Run Tests\
+## 🧪 Running Tests
+📌 Testing Frameworks Used
+- JUnit 5 – Unit testing framework
+- Mockito – Mocking dependencies for isolated tests
+- SpringBootTest – Integration testing
+🚀 How to Run Tests
 
-Run the following command to execute all tests:\
+Run the following command to execute all tests:
 
 ```bash
 mvn test
 ```
 
-or if using Gradle:\
+or if using Gradle:
 ```bash
 ./gradlew test
 ```
-📂 Test Locations\
-    Controller Tests: src/test/java/com/librarymanagement/library_management/controller/\
-    Service Tests: src/test/java/com/librarymanagement/library_management/service/\
+## 📂 Test Locations
+- Controller Tests: src/test/java/com/librarymanagement/library_management/controller/
+- Service Tests: src/test/java/com/librarymanagement/library_management/service/
+
+✅ Expected Output
 \
-✅ Expected Output\
-\
-If all tests pass, you'll see:\
+If all tests pass, you'll see:
 ```bash
 [INFO] Tests run: X, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
-If a test fails, check the error details for debugging.\
+If a test fails, check the error details for debugging.
+
+## 🔍 Logging & Monitoring
+✅ Implemented logging using Aspect-Oriented Programming (AOP) to track method calls, exceptions, and execution time.
+📜 Logs important events, such as:
+- Book additions & updates 📖
+- Patron registrations 👥
+- Borrowing & returning books 🔄
+    📂 Logs are stored in the application logs for debugging and monitoring.
+
+ ## 🔹 Caching Mechanism
+
+To improve system performance, this application uses Spring Boot Caching to cache frequently accessed data.
 \
-🔍 Logging & Monitoring\
-    ✅ Implemented logging using Aspect-Oriented Programming (AOP) to track method calls, exceptions, and execution time.\
-    📜 Logs important events, such as:\
-- Book additions & updates 📖\
-- Patron registrations 👥\
-- Borrowing & returning books 🔄\
-    📂 Logs are stored in the application logs for debugging and monitoring.\
+    Books and Patrons are cached to reduce database queries and speed up response times.
+    Caching is automatically cleared when books or patrons are added, updated, or deleted.
+    Borrowing records are NOT cached since they change frequently and should always reflect real-time data.
 \
-🔗 Technologies Used:\
-- Spring Boot - Backend framework\
-- JPA (Hibernate) - Database management\
-- MySQL - Database\
-- Lombok - Reduces boilerplate code\
+Spring Boot’s default in-memory cache is used, but this can be configured to use Redis for better performance in production.
+
+
+## 🔗 Technologies Used:
+- Spring Boot - Backend framework
+- JPA (Hibernate) - Database management
+- MySQL - Database
+- Lombok - Reduces boilerplate code
 \
-📜 License\
-\
+📜 License
+
 This project is open-source and available under the MIT License.
